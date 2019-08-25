@@ -11,6 +11,12 @@ import java.util.List;
  */
 public class StringUtils {
 
+	/**
+	 * This method returns the Levenshtein Distance between provided strings
+	 * @param str1 String 1
+	 * @param str2 String 2
+	 * @return int Levenshtein Distance
+	 */
 	public static int calculateLevenshteinDistance(String str1, String str2){
 		
 		//if first string is empty then the distance will always be length of other string

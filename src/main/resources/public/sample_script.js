@@ -7,16 +7,20 @@ function analyseKeyword() {
 	var keyword = $("#keyword").val();
 	var entry_text = $("#entry_text").val();
 	
-	alert(keyword+'...'+entry_text);
+//	alert(keyword+'...'+entry_text);
 	
+	var json = {};
+	json.entry_text = entry_text;
+	json.keyword = keyword;
+	var jsonStr = JSON.stringify( json);
 	var reqObj = {
 		url : "./eln/api/analyseKeyword",
-		data : {"entry_text":entry_text, "keyword":keyword}
+		data : jsonStr
 	};
 	
 	updateRequestDisplay(reqObj, title);
 	
-	standardGet(reqObj, title, function(data) {
+	standardPost(reqObj, title, function(data) {
 		updateResponseDisplay(data, title);
 		resizeResults();
 	});
@@ -25,7 +29,7 @@ function analyseKeyword() {
 
 function resizeResults(){$( "#results-type-header" ).resizable();}
 
-function standardGet(reqObj, title, successFunc, errFunc) {
+function standardPost(reqObj, title, successFunc, errFunc) {
 	// clear out the title of the search in the JSON display...
 	if (typeof (reqObj) == "undefined" && reqObj == null) {
 		reqObj = {};
@@ -34,7 +38,7 @@ function standardGet(reqObj, title, successFunc, errFunc) {
 	$.extend(reqObj, {
 		contentType : "application/json; charset=utf-8",
 		dataType : "json",
-		type : "GET",
+		type : "POST",
 		success : function(data) {
 			updateResponseDisplay(data, title + " done", this);
 			if (typeof (successFunc) != "undefined" && successFunc != null)

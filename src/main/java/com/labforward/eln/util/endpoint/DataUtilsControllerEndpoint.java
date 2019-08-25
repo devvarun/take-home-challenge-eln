@@ -5,9 +5,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.labforward.eln.model.DataUtilResModel;
@@ -27,15 +30,21 @@ public class DataUtilsControllerEndpoint {
 		return new DataUtilResModel();
 	}
 
-	@GetMapping("/eln/api/analyseKeyword")
+	@PostMapping("/eln/api/analyseKeyword")
 	@ResponseBody
-	public DataUtilResModel analyseKeyword(@RequestParam(name="entry_text", required=true, defaultValue="") String entryTxt, 
-			@RequestParam(name="keyword", required=true, defaultValue="") String keyword){
+	public DataUtilResModel analyseKeyword(@RequestBody String jsonReq) throws JSONException{
 		
+		//Extract data from the json object received 
+		JSONObject jsonObj = new JSONObject(jsonReq);
+		String keyword = (String)jsonObj.get("keyword");
+		String entryTxt = (String)jsonObj.get("entry_text");
+		
+		//Get the list of words
 		List<String> words = StringUtils.getWords(entryTxt);
 		
 		int frequency = 0;
 		Set<String> similarWords = new HashSet<>();
+		
 		for(String word : words){
 			if(keyword.equals(word))
 				frequency = frequency + 1;

@@ -1,0 +1,64 @@
+<html>
+<head>
+<title>ELN: API Samples</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script src="sample_script.js"></script>
+</head>
+<body>
+	<div class="container">
+
+		<div class="row">
+
+			<h2>Service Samples</h2>
+
+			<div class="well sm-well">
+				<div class="row">
+					<div class="form-group">
+						<label class="col-xs-3">Entry Text</label>
+						<textarea id="entry_text" placeholder="enter entry text here..."
+							class="form-control col-xs-8"></textarea>
+					</div>
+
+					<div class="form-group">
+						<label class="col-xs-3">Keyword:</label> <input
+							class="waterMark form-control" id="keyword" type="text"
+							maxlength="140" value="Word" name="keyword"
+							title="enter keyword to be analyzed" />
+					</div>
+					<div class="form-group">
+						<a id="analyseKeyword" class="btn btn-primary btn-xs">Analyse
+							Keyword</a>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="col-md-12" style="margin-top: 20px;">
+				<div class="panel panel-default col-md-6">
+					<div class="panel-heading">
+						Sample Request: <span id="response-type"></span>
+					</div>
+					<pre class="panel-body" id="request"
+						style="max-height: 400px; font-family: courier;">
+                </pre>
+				</div>
+
+				<div id="results-type-header col-md-6">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							Sample Response: <span id="results-type"></span>
+						</div>
+						<pre class="panel-body" id="results">
+                </pre>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</body>
+</html>
